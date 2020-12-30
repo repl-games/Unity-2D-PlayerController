@@ -17,8 +17,10 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void MovePlayer() {
-    Vector2 move = GetMovementInput();
-    MovePlayerFree(move);
+    Vector2 moveVector = GetMovementInput();
+
+    UpdatePlayerAnimator(moveVector.x, moveVector.y);
+    MovePlayerFree(moveVector);
   }
 
   private Vector2 GetMovementInput() {
@@ -36,8 +38,6 @@ public class PlayerController : MonoBehaviour {
   // Free movement of player
   private void MovePlayerFree(Vector2 moveVector) {
     Vector3 position = transform.position;
-
-    UpdatePlayerAnimator(moveVector.x, moveVector.y);
 
     if (moveVector.y > 0) {
       position += Vector3.up;
